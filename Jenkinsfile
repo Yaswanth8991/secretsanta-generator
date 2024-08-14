@@ -58,7 +58,7 @@ pipeline {
         stage('Deploy to Nexus') {
             steps {
                 withMaven(
-                    globalMavenSettingsConfig: 'settings-file', 
+                    globalMavenSettingsConfig: 'settings', 
                     maven: 'maven', 
                     traceability: true
                 ) {
