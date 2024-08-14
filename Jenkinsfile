@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SCANNER_HOME = tool name: 'sonar_scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        SCANNER_HOME = tool name: 'sonar_scanner'// type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
 
     stages {
