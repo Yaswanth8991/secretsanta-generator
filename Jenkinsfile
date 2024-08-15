@@ -41,13 +41,13 @@ pipeline {
             }
         }
 
-       /* stage('Quality Gate Analysis') {
+        stage('Quality Gate Analysis') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: true // Abort pipeline if Quality Gate fails
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
                 }
             }
-        }*/
+        }
 
         stage('Build Stage') {
             steps {
