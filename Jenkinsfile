@@ -49,7 +49,7 @@ pipeline {
         stage('Quality Gate Analysis') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar-credentials'
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar-credentials-aws'
                 }
             }
         }
