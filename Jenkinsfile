@@ -35,7 +35,7 @@ pipeline {
 
         stage('Sonar Analysis') {
             steps {
-                withSonarQubeEnv('sonar_server') {
+                withSonarQubeEnv('sonar-server') {
                     sh '''
                     ${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectName=Santa \
