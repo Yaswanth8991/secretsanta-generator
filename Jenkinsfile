@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven3'
+        maven 'maven'
         jdk 'jdk17'
     }
 
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Sonar Analysis') {
             steps {
-                withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonar_scanner') {
                     sh '''
                     ${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectName=Santa \
