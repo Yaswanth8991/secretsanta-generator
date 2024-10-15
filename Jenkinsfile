@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tool {
+        maven 'maven3'
+        jdk 'jdk17'
+    }
+
     environment {
         SCANNER_HOME = tool name: 'sonar_scanner'// type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
@@ -12,21 +17,21 @@ pipeline {
             }
         }
 
-        stage('Parallel Stages') {
-            parallel {
-                stage('Code Compile') {
-                    steps {
+        // stage('Parallel Stages') {
+        //     parallel {
+        stage('Code Compile') {
+            steps {
                         sh "mvn clean compile"
-                    }
-                }
-
-                stage('Unit Tests') {
-                    steps {
-                        sh "mvn test"
-                    }
                 }
             }
-        }
+
+        stage('Unit Tests') {
+            steps {
+                        sh "mvn test"
+                }
+            }
+        //     }
+        // }
 
         stage('Sonar Analysis') {
             steps {
@@ -44,7 +49,7 @@ pipeline {
         stage('Quality Gate Analysis') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar-token'
                 }
             }
         }
