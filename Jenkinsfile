@@ -75,7 +75,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker-cred') {
+                    withDockerRegistry(credentialsId: 'docker-credentials') {
                         sh "docker build -t santa123 ."
                     }
                 }
@@ -85,7 +85,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker-cred') {
+                    withDockerRegistry(credentialsId: 'docker-credentials') {
                         sh "docker tag santa123 yaswanth98/santa123:latest"
                         sh "docker push yaswanth98/santa123:latest"
                     }
